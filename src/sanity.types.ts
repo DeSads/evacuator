@@ -19,33 +19,20 @@ export declare const internalGroqTypeReferenceTo: unique symbol
 // Source: schema.json
 export type ContactBlock = {
   _type: 'contactBlock'
+  _key: string
   title?: string
   phone?: string
   email?: string
   address?: string
 }
 
+export type Block = HeroBlock | ServicesListBlock | TextBlock | ContactBlock;
+
 export type TextBlock = {
   _type: 'textBlock'
+  _key: string
   title?: string
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  content?: any[]
 }
 
 export type ServiceReference = {
@@ -57,13 +44,10 @@ export type ServiceReference = {
 
 export type ServicesListBlock = {
   _type: 'servicesListBlock'
+  _key: string;
   title?: string
   subtitle?: string
-  featuredServices?: Array<
-    {
-      _key: string
-    } & ServiceReference
-  >
+  featuredServices?: Service[]
 }
 
 export type SanityImageAssetReference = {
@@ -75,6 +59,7 @@ export type SanityImageAssetReference = {
 
 export type HeroBlock = {
   _type: 'heroBlock'
+  _key: string;
   title?: string
   subtitle?: string
   backgroundImage?: {

@@ -1,26 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from './App';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import { getServiceBySlug } from './api/services';
-import ServicesPage from './pages/ServicesPage';
-import { getServices } from './api/services';
+import HomePage from './pages/HomePage';
+import { getPageBySlug } from './api/pages';
 import './index.css';
 
-// Создаём роутер
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
-    children: [
-      {
-        path: 'services',
-        element: <ServicesPage />,
-        loader: getServices, // здесь мы указываем функцию, которая вернёт данные
-      },
-      // другие маршруты (главная, контакты) добавим позже
-    ],
+    element: <HomePage />,
+    loader: async () => {
+      const page = await getPageBySlug('home');
+      return page;
+    },
   },
   {
     path: 'services/:slug',

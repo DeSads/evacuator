@@ -1,10 +1,8 @@
 import { useState, useMemo } from "react";
-import { useLoaderData, Link } from 'react-router-dom';
-import { urlFor } from "../lib/sanity";    
+import { useLoaderData } from 'react-router-dom';
 import type { Service } from '../sanity.types';
 import { motion } from 'framer-motion';
 import ServiceCard from '../components/ServiceCard';
-import PortableTextRenderer from "../components/PortableTextRender";
 
 export default function ServicesPage() {
     const services = useLoaderData() as Service[];
