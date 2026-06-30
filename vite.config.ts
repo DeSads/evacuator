@@ -11,4 +11,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+  proxy: {
+    '/send-message.php': {
+      target: 'http://127.0.0.1:8000',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/send-message.php/, '/send-message.php'),
+    },
+  },
+}
 })

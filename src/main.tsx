@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import { getServiceBySlug } from './api/services';
 import HomePage from './pages/HomePage';
+import ContactsPage from './pages/ContactsPage';
+import { getSiteSettings } from './api/settings';
 import { getPageBySlug } from './api/pages';
 import './index.css';
 
@@ -25,6 +27,11 @@ const router = createBrowserRouter([
       return getServiceBySlug(params.slug);
     },
   },
+  {
+  path: 'contacts',
+  element: <ContactsPage />,
+  loader: getSiteSettings,
+},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
